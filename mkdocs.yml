@@ -1,4 +1,4 @@
-site_name: Guidewire Learning Journal
+site_name: Learning Journal
 site_description: Personal knowledge base — BillingCenter, Gosu, Architecture & AI
 site_author: Sakthivel S
 site_url: https://Sakthi-S99.github.io/guidewire-learning-journal/
@@ -61,6 +61,12 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - About & Resume: about.md
+  - Certifications: certifications.md
+  - Architecture:
+    - Overview: architecture/index.md
+    - Design Decisions: architecture/design-decisions/index.md
+    - Integration Patterns: architecture/integration-patterns/index.md
   - Concepts:
     - Overview: concepts/index.md
     - Invoicing: concepts/invoicing/index.md
@@ -72,10 +78,6 @@ nav:
     - Bundle Handling: gosu-patterns/bundle-handling.md
     - Query Patterns: gosu-patterns/query-patterns.md
     - Common Pitfalls: gosu-patterns/common-pitfalls.md
-  - Architecture:
-    - Overview: architecture/index.md
-    - Design Decisions: architecture/design-decisions/index.md
-    - Integration Patterns: architecture/integration-patterns/index.md
   - RCA Library:
     - Overview: rca-library/index.md
     - Template: rca-library/template.md
@@ -87,6 +89,6 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/Sakthi-S99
     - icon: fontawesome/brands/linkedin
-      link: www.linkedin.com/in/sakthi-s99
+      link: https://linkedin.com/in/Sakthi-S99
 
 copyright: Copyright &copy; 2025 — Personal Learning Journal

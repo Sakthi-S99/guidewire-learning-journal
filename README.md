@@ -1,4 +1,4 @@
-# Guidewire Learning Journal
+# Learning Journal
 
 Personal knowledge base — BillingCenter, Gosu, Architecture & Privacy-focused AI.
 
