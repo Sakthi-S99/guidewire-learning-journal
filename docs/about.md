@@ -124,7 +124,7 @@ Certifications are tracked on a dedicated page with badges where available.
 
 ## Resume Download
 
-📄 [Download Resume (PDF)]Sakthivel Selvakumar_5yrs.pdf
+📄 [Download Resume (PDF)](SakthivelS_GWBCConfig.pdf)
 
 ---
 
