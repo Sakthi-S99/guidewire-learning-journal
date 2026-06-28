@@ -37,7 +37,7 @@ I believe in OOTB-first thinking, upgrade-safe code, and documenting everything 
 - Commission & Producer Management
 - Disbursements & Refunds
 - Cross-suite Integration (PC ↔ BC ↔ CC)
-- Version upgrades (Elysian → Mammoth)
+- Version upgrades (Elysian → Palisades)
 
 **Production Support**
 

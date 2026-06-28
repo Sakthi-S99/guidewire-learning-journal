@@ -1,0 +1,3008 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal knowledge base — BillingCenter, Gosu, Architecture & AI">
+      
+      
+        <meta name="author" content="Sakthivel S">
+      
+      
+        <link rel="canonical" href="https://Sakthi-S99.github.io/guidewire-learning-journal/architecture/">
+      
+      
+        <link rel="prev" href="../certifications/">
+      
+      
+        <link rel="next" href="design-decisions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Overview - Learning Journal</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guidewire-suite-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Learning Journal" class="md-header__button md-logo" aria-label="Learning Journal" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Learning Journal
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Sakthi-S99/guidewire-learning-journal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    guidewire-learning-journal
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About & Resume
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../certifications/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Certifications
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../concepts/" class="md-tabs__link">
+          
+  
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../gosu-patterns/" class="md-tabs__link">
+          
+  
+  
+  Gosu Patterns
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../rca-library/" class="md-tabs__link">
+          
+  
+  
+  RCA Library
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../ai-privacy/" class="md-tabs__link">
+          
+  
+  
+  AI & Privacy
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Learning Journal" class="md-nav__button md-logo" aria-label="Learning Journal" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Learning Journal
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Sakthi-S99/guidewire-learning-journal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    guidewire-learning-journal
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About & Resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../certifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Certifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-guidewire-insurance-suite-big-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Guidewire Insurance Suite — Big Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-contact-manager-the-shared-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Contact Manager — The Shared Foundation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Contact Manager — The Shared Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-cm-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What CM Stores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cm-integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CM Integration Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-cm-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key CM Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-policycenter-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PolicyCenter Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. PolicyCenter Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-responsibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-key-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC Key Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-policy-lifecycle-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC Policy Lifecycle Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-billingcenter-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. BillingCenter Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. BillingCenter Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-responsibility_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-architecture_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-domain-model-data-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC Domain Model (Data Hierarchy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-core-subsystems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC Core Subsystems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-configuration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC Configuration Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-claimcenter-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ClaimCenter Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ClaimCenter Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-responsibility_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-architecture_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-key-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC Key Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-claim-lifecycle-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC Claim Lifecycle Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-end-to-end-integration-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. End-to-End Integration Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. End-to-End Integration Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pc-bc-policy-lifecycle-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC → BC: Policy Lifecycle Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-pc-delinquency-triggered-cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC → PC: Delinquency-Triggered Cancellation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-cc-policy-data-for-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC → CC: Policy Data for Claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-bc-recovery-credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC → BC: Recovery Credits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deductible-collection-cc-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deductible Collection (CC → BC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-external-system-integration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. External System Integration Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. External System Integration Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integration-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-integration-inbound-to-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST Integration (Inbound to BC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-messaging-outbound-from-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async Messaging (Outbound from BC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-based-integration-key-bc-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin-Based Integration (Key BC Plugins)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-xcenter-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. xCenter Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cloud-vs-on-premise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Cloud vs On-Premise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-core-architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Core Architecture Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="design-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="integration-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/invoicing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invoicing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/payment-plans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payment Plans
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/delinquency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delinquency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/billing-center-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BillingCenter Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gosu Patterns
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gosu Patterns
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gosu-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gosu-patterns/bundle-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bundle Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gosu-patterns/query-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gosu-patterns/common-pitfalls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Pitfalls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RCA Library
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    RCA Library
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rca-library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rca-library/template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Privacy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Privacy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-guidewire-insurance-suite-big-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Guidewire Insurance Suite — Big Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-contact-manager-the-shared-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Contact Manager — The Shared Foundation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Contact Manager — The Shared Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-cm-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What CM Stores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cm-integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CM Integration Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-cm-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key CM Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-policycenter-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PolicyCenter Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. PolicyCenter Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-responsibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-key-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC Key Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-policy-lifecycle-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC Policy Lifecycle Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-billingcenter-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. BillingCenter Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. BillingCenter Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-responsibility_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-architecture_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-domain-model-data-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC Domain Model (Data Hierarchy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-core-subsystems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC Core Subsystems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-configuration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC Configuration Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-claimcenter-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ClaimCenter Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ClaimCenter Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-responsibility_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Responsibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-architecture_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-key-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC Key Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-claim-lifecycle-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC Claim Lifecycle Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-end-to-end-integration-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. End-to-End Integration Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. End-to-End Integration Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pc-bc-policy-lifecycle-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC → BC: Policy Lifecycle Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bc-pc-delinquency-triggered-cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BC → PC: Delinquency-Triggered Cancellation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-cc-policy-data-for-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC → CC: Policy Data for Claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-bc-recovery-credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC → BC: Recovery Credits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deductible-collection-cc-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deductible Collection (CC → BC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-external-system-integration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. External System Integration Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. External System Integration Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integration-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-integration-inbound-to-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST Integration (Inbound to BC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-messaging-outbound-from-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async Messaging (Outbound from BC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-based-integration-key-bc-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin-Based Integration (Key BC Plugins)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-xcenter-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. xCenter Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cloud-vs-on-premise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Cloud vs On-Premise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-core-architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Core Architecture Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Sakthi-S99/guidewire-learning-journal/edit/main/docs/architecture/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="guidewire-suite-architecture">Guidewire Suite Architecture</h1>
+<blockquote>
+<p>End-to-end architecture of the Guidewire Insurance Suite — xCenter internals, inter-system flows (PC → BC → CC), Contact Manager, and external integration patterns.</p>
+</blockquote>
+<hr />
+<h2 id="1-the-guidewire-insurance-suite-big-picture">1. The Guidewire Insurance Suite — Big Picture</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                         ┌─────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                         │     Guidewire Platform       │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                         │  (Shared Infrastructure)     │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                         │  Auth │ Messaging │ Search   │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                         └──────────────┬──────────────┘
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                                        │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          ┌─────────────────────────────┼─────────────────────────────┐
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          │                             │                             │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>┌─────────▼──────────┐      ┌───────────▼──────────┐     ┌──────────▼──────────┐
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   PolicyCenter     │      │   BillingCenter       │     │   ClaimCenter       │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   (PC)             │      │   (BC)                │     │   (CC)              │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│                    │      │                        │     │                     │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│  Quotes │ Bind     │      │  Invoicing │ Payments  │     │  FNOL │ Reserves   │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  Endorse│ Renew    │◄────►│  Delinquency│Commissions◄───►│  Payments│Recovery │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  Cancel │ Audit    │      │  Disbursement          │     │  Subrogation        │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>└─────────┬──────────┘      └───────────┬────────────┘     └──────────┬──────────┘
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>          │                             │                              │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>          └─────────────────────────────┴──────────────────────────────┘
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                        │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                         ┌──────────────▼──────────────┐
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                         │      Contact Manager         │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                         │  (Shared Contact Repository) │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                         │  Persons │ Companies │ Roles │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>                         └──────────────┬──────────────┘
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>                                        │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>                         ┌──────────────▼──────────────┐
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>                         │      External Systems        │
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>                         │  Payment Gateways │ GL       │
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>                         │  ISO/OFAC │ Vendors │ Portals │
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>                         └─────────────────────────────┘
+</code></pre></div>
+<p><strong>One-line summary per xCenter:</strong>
+- <strong>PC</strong> — What is insured, for how much, under what terms
+- <strong>BC</strong> — Collect the premium for it
+- <strong>CC</strong> — Pay the loss when something goes wrong, recover what you can
+- <strong>Contact Manager</strong> — Who everyone is (shared across all xCenters)</p>
+<hr />
+<h2 id="2-contact-manager-the-shared-foundation">2. Contact Manager — The Shared Foundation</h2>
+<p>Contact Manager (CM) is the <strong>central contact repository</strong> across the entire suite. Every person or organization referenced in PC, BC, or CC is ultimately a Contact in CM.</p>
+<h3 id="what-cm-stores">What CM Stores</h3>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Person</strong></td>
+<td>Named insured, claimant, adjuster, producer</td>
+</tr>
+<tr>
+<td><strong>Company</strong></td>
+<td>Insurance carrier, vendor, repair shop, law firm</td>
+</tr>
+<tr>
+<td><strong>Roles</strong></td>
+<td>PolicyHolder, Producer, Vendor, Claimant, LienHolder</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cm-integration-points">CM Integration Points</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PolicyCenter                 Contact Manager               ClaimCenter
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    │                               │                           │
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    │── Named Insured ─────────────►│◄── Claimant ─────────────│
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    │── Producer / Agent ──────────►│◄── Vendor / Attorney ────│
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    │── Additional Insured ────────►│◄── Adjuster ─────────────│
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    │                               │                           │
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>BillingCenter                       │
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    │── Account Holder ────────────►│
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    │── Billing Contact ───────────►│
+</code></pre></div>
+<h3 id="key-cm-principles">Key CM Principles</h3>
+<ul>
+<li><strong>Single source of truth</strong> — update a contact once, reflected across all xCenters</li>
+<li><strong>Role-based</strong> — same Person can be a PolicyHolder in PC and a Claimant in CC</li>
+<li><strong>Address/Phone/Email</strong> — centrally managed, not duplicated per xCenter</li>
+<li><strong>Duplicate detection</strong> — CM merges duplicate contacts to avoid data sprawl</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Business Purpose: Look up or create a contact in Contact Manager before assigning to policy</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// Edge Case: Same person may already exist with slightly different name spelling</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">var</span><span class="w"> </span><span class="n">contact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gw</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">database</span><span class="o">.</span><span class="na">Query</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">Person</span><span class="o">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="s">&quot;TaxID&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">Relop</span><span class="o">.</span><span class="na">Equals</span><span class="o">,</span><span class="w"> </span><span class="n">taxId</span><span class="o">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="o">.</span><span class="na">select</span><span class="o">().</span><span class="na">FirstResult</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">contact</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">contact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="o">(</span><span class="n">bundle</span><span class="o">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="n">contact</span><span class="o">.</span><span class="na">FirstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstName</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="n">contact</span><span class="o">.</span><span class="na">LastName</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">lastName</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="n">contact</span><span class="o">.</span><span class="na">TaxID</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">taxId</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="o">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-policycenter-architecture">3. PolicyCenter Architecture</h2>
+<h3 id="core-responsibility">Core Responsibility</h3>
+<p>Policy lifecycle management — submission to issuance, renewal, endorsement, cancellation, and audit.</p>
+<h3 id="internal-architecture">Internal Architecture</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌──────────────────────────────────────────────────────────────┐
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│                        PolicyCenter                          │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│                                                              │
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│  ┌──────────────────────────────────────────────────────┐   │
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│  │                  Submission Engine                   │   │
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│  │  New Business │ Quotes │ Bind │ Issue                 │   │
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│  └────────────────────────┬─────────────────────────────┘   │
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│                           │                                  │
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│  ┌────────────────────────▼─────────────────────────────┐   │
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│  │               Policy Transaction Engine              │   │
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│  │  Renewal │ Endorsement │ Cancellation │ Rewrite       │   │
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│  │  Reinstatement │ Audit │ Out-of-Sequence              │   │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│  └────────────────────────┬─────────────────────────────┘   │
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│                           │                                  │
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│  ┌────────────┬───────────▼──────────┬─────────────────┐    │
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│  │  LOB       │   Underwriting       │   Rating         │    │
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│  │  Config    │   Rules Engine       │   Engine         │    │
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│  │  (Products)│   (Eligibility)      │   (Premium)      │    │
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>│  └────────────┴──────────────────────┴─────────────────┘    │
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>│                                                              │
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>│  ┌──────────────────────────────────────────────────────┐   │
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>│  │              Job / Workflow Engine                   │   │
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>│  │  Activities │ Approval │ UW Referral │ Assignment    │   │
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>│  └──────────────────────────────────────────────────────┘   │
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>└──────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="pc-key-domains">PC Key Domains</h3>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Product Model</strong></td>
+<td>Defines LOBs, coverages, conditions, exclusions</td>
+</tr>
+<tr>
+<td><strong>Submission Engine</strong></td>
+<td>Quote → Bind → Issue lifecycle</td>
+</tr>
+<tr>
+<td><strong>Policy Transactions</strong></td>
+<td>Endorsements, cancellations, rewrites, audits</td>
+</tr>
+<tr>
+<td><strong>Underwriting Rules</strong></td>
+<td>Eligibility, referral, approval gates</td>
+</tr>
+<tr>
+<td><strong>Rating Engine</strong></td>
+<td>Premium calculation per coverage</td>
+</tr>
+<tr>
+<td><strong>Job Framework</strong></td>
+<td>All transactions modeled as Jobs (auditable)</td>
+</tr>
+<tr>
+<td><strong>Account</strong></td>
+<td>Insured entity, holds policies</td>
+</tr>
+<tr>
+<td><strong>Producer / Agency</strong></td>
+<td>Distribution channel, commission tracking</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pc-policy-lifecycle-flow">PC Policy Lifecycle Flow</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Account Created
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>      │
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>      ▼
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Submission (Job)
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      │
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   Quote ──► UW Review ──► Referral / Approve
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>      │
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>      ▼
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>   Bind ──► Issue
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>      │
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>      ├──► Renewal Job         (system-initiated at expiry)
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>      │
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>      ├──► Endorsement Job     (mid-term change)
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>      │
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>      ├──► Cancellation Job ──────────────────────────────┐
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>      │         │                                         │
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>      │    (Non-Pay) ◄── BC triggers via Delinquency      │
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>      │                                                   │
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>      ├──► Rewrite Job         (replace cancelled)        │
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>      │                                                   │
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>      └──► Audit Job           (verify exposure post-expiry)
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>                │                                         │
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>                ▼                                         ▼
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>         Audit Charge/Credit ──────────────────► BillingCenter
+</code></pre></div>
+<hr />
+<h2 id="4-billingcenter-architecture">4. BillingCenter Architecture</h2>
+<h3 id="core-responsibility_1">Core Responsibility</h3>
+<p>Premium collection — invoicing, payments, delinquency, commissions, and disbursements.</p>
+<h3 id="internal-architecture_1">Internal Architecture</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌──────────────────────────────────────────────────────────────┐
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                       BillingCenter                          │
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>│                                                              │
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│  ┌──────────────────────────────────────────────────────┐   │
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│  │              Billing Instruction Engine              │   │
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│  │  Receives policy events from PC                      │   │
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│  │  Creates Charges, Applies Payment Plans              │   │
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│  └────────────────────────┬─────────────────────────────┘   │
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│                           │                                  │
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│  ┌────────────────────────▼─────────────────────────────┐   │
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│  │                  Invoice Engine                      │   │
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│  │  Invoice Stream │ Due Dates │ Invoice Items           │   │
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│  └──────────┬──────────────────────────┬────────────────┘   │
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│             │                          │                     │
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>│  ┌──────────▼──────────┐  ┌────────────▼──────────────┐     │
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>│  │   Payment Engine    │  │   Delinquency Engine       │     │
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>│  │                     │  │                            │     │
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>│  │  Apply Payments     │  │  Triggers │ Plans          │     │
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>│  │  Unapplied Cash     │  │  Holds │ Cancellation      │     │
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>│  │  Disbursements      │  │  Workflows                 │     │
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>│  └──────────┬──────────┘  └────────────────────────────┘     │
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>│             │                                                 │
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>│  ┌──────────▼──────────────────────────────────────────┐     │
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>│  │          Commission &amp; Disbursement Engine            │     │
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>│  │  Producer Commissions │ Refunds │ Outbound Payments  │     │
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>│  └─────────────────────────────────────────────────────┘     │
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>└──────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="bc-domain-model-data-hierarchy">BC Domain Model (Data Hierarchy)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Account
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a> └── PolicyPeriod (linked from PC)
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>      └── BillingInstruction
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>           └── Charge
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>                └── InvoiceItem
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>                     └── Invoice
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                          └── Payment / Disbursement
+</code></pre></div>
+<h3 id="bc-core-subsystems">BC Core Subsystems</h3>
+<table>
+<thead>
+<tr>
+<th>Subsystem</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Invoice Engine</strong></td>
+<td>Generates invoices from billing instructions</td>
+</tr>
+<tr>
+<td><strong>Payment Engine</strong></td>
+<td>Applies payments, handles unapplied cash</td>
+</tr>
+<tr>
+<td><strong>Delinquency Engine</strong></td>
+<td>Triggers and manages delinquency workflows</td>
+</tr>
+<tr>
+<td><strong>Commission Engine</strong></td>
+<td>Calculates and tracks producer commissions</td>
+</tr>
+<tr>
+<td><strong>Disbursement Engine</strong></td>
+<td>Handles refunds and outbound payments</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bc-configuration-points">BC Configuration Points</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>configuration/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── config/
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   ├── BillingRules.xml           ← billing rule sets
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   ├── PaymentAllocationRules     ← how payments are applied
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│   └── DelinquencyRules           ← triggers, plans, actions
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>├── gsrc/
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│   ├── gw/plugin/                 ← plugin implementations
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│   └── gw/bc/                     ← custom Gosu logic
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>└── resources/
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    └── typelists/                 ← custom typelist extensions
+</code></pre></div>
+<hr />
+<h2 id="5-claimcenter-architecture">5. ClaimCenter Architecture</h2>
+<h3 id="core-responsibility_2">Core Responsibility</h3>
+<p>End-to-end claim lifecycle — FNOL through closure, reserves, payments, and recoveries.</p>
+<h3 id="internal-architecture_2">Internal Architecture</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>┌──────────────────────────────────────────────────────────────┐
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│                       ClaimCenter                            │
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│                                                              │
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│  ┌──────────────────────────────────────────────────────┐   │
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│  │                    FNOL Engine                       │   │
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│  │  First Notice of Loss │ Coverage Verification        │   │
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│  └────────────────────────┬─────────────────────────────┘   │
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│                           │                                  │
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│  ┌────────────────────────▼─────────────────────────────┐   │
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│  │              Claim Lifecycle Engine                  │   │
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│  │  Open │ Investigate │ Evaluate │ Close │ Reopen       │   │
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│  └────────┬──────────────────────────┬──────────────────┘   │
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│           │                          │                       │
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│  ┌────────▼──────────┐  ┌────────────▼─────────────────┐    │
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>│  │   Reserve Engine  │  │     Payment Engine            │    │
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>│  │                   │  │                               │    │
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>│  │  Loss Reserves    │  │  Claim Payments               │    │
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>│  │  Expense Reserves │  │  Expense Payments             │    │
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>│  │  Reserve Changes  │  │  Recovery Receipts            │    │
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>│  └───────────────────┘  └───────────────────────────────┘    │
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>│                                                              │
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>│  ┌──────────────────────────────────────────────────────┐   │
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>│  │            Recovery &amp; Subrogation Engine             │   │
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>│  │  Subrogation │ Salvage │ Recovery Tracking            │   │
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>│  └──────────────────────────────────────────────────────┘   │
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>│                                                              │
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>│  ┌──────────────────────────────────────────────────────┐   │
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>│  │           Assignment &amp; Activity Engine               │   │
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>│  │  Adjuster Assignment │ Vendor Mgmt │ SLA Tracking     │   │
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>│  └──────────────────────────────────────────────────────┘   │
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>└──────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="cc-key-domains">CC Key Domains</h3>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FNOL</strong></td>
+<td>Intake, policy lookup, coverage match</td>
+</tr>
+<tr>
+<td><strong>Claim</strong></td>
+<td>Master claim record, loss date, cause</td>
+</tr>
+<tr>
+<td><strong>Exposure</strong></td>
+<td>Coverage-specific unit of claim handling</td>
+</tr>
+<tr>
+<td><strong>Reserve</strong></td>
+<td>Financial estimate per exposure (loss + expense)</td>
+</tr>
+<tr>
+<td><strong>Transaction</strong></td>
+<td>Payments, recoveries, reserve changes</td>
+</tr>
+<tr>
+<td><strong>Check</strong></td>
+<td>Payment instrument generated from transactions</td>
+</tr>
+<tr>
+<td><strong>Subrogation</strong></td>
+<td>Recovery from responsible 3rd parties</td>
+</tr>
+<tr>
+<td><strong>Vendor</strong></td>
+<td>External service providers (repair shops, doctors)</td>
+</tr>
+<tr>
+<td><strong>Activity</strong></td>
+<td>Tasks assigned to adjusters, vendors, specialists</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cc-claim-lifecycle-flow">CC Claim Lifecycle Flow</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>FNOL Received
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>      │
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>      ▼
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Policy Lookup ──► Coverage Verification ──► Exposure Created
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>      │
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>      ▼
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Claim Assigned (Adjuster / Team)
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>      │
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>      ▼
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>Reserves Set (Loss + Expense per Exposure)
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>      │
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>      ├──► Investigation
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>      │          │
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>      │    Liability Determined
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>      │          ▼
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>      ├──► Evaluation ──► Settlement Negotiation
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>      │
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>      ▼
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>Payment Issued ──► Check Generated ──► Vendor / Claimant
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>      │
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>      ├──► Subrogation / Salvage Recovery ──► BC (Recovery Credit)
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>      │
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>      ▼
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>Claim Closed ──► (Reopen if needed)
+</code></pre></div>
+<hr />
+<h2 id="6-end-to-end-integration-flows">6. End-to-End Integration Flows</h2>
+<h3 id="pc-bc-policy-lifecycle-events">PC → BC: Policy Lifecycle Events</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>PC Event               BC Action
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>────────               ─────────
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Policy Issued    ──►  Create Account + PolicyPeriod
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>                       Apply Payment Plan
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>                       Generate Invoice Stream
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Endorsement      ──►  Charge / Return Premium
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>                       Adjust Scheduled Items
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>Renewal          ──►  New Term Charges + New Invoice Stream
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Cancellation     ──►  Flat / Pro-rata Return Premium
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>                       Stop Future Invoices
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>Audit Finalized  ──►  Audit Charge or Credit
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>                       Settle Invoice Stream
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>Reinstatement    ──►  Restore charges + past due amount
+</code></pre></div>
+<p><strong>Plugin hook — BC receives BillingInstruction from PC:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// Business Purpose: Custom validation when billing instruction arrives from PC</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1">// Edge Case: Mid-term endorsements create amendment charges, not new instructions</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">BillingInstructionPlugin</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IBillingInstructionPlugin</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="kd">override</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nf">beforeCreateBillingInstruction</span><span class="o">(</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">      </span><span class="n">instruction</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">BillingInstruction</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instruction</span><span class="o">.</span><span class="na">PolicyPeriod</span><span class="o">.</span><span class="na">Account</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">account</span><span class="o">.</span><span class="na">TotalOutstandingDue</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">BillingException</span><span class="o">(</span><span class="s">&quot;Account has unresolved balance — cannot bind&quot;</span><span class="o">)</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="bc-pc-delinquency-triggered-cancellation">BC → PC: Delinquency-Triggered Cancellation</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>BillingCenter                          PolicyCenter
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    │                                       │
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    │── Delinquency workflow escalates ───► │
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    │── Cancellation request (REST) ──────► │── Cancels PolicyPeriod
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    │◄─ Confirmation ─────────────────────  │
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    │── Updates delinquency status          │
+</code></pre></div>
+<h3 id="pc-cc-policy-data-for-claims">PC → CC: Policy Data for Claims</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>PC Data Available in CC at FNOL
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>────────────────────────────────
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>- Policy coverages at time of loss
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>- Coverage limits / deductibles
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>- Named insureds / additional insureds
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>- Producers / agents
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>- Policy period (effective / expiration)
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>- LOB-specific exposure data
+</code></pre></div>
+<h3 id="cc-bc-recovery-credits">CC → BC: Recovery Credits</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>CC Event               BC Action
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>────────               ─────────
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Recovery Received ──►  Credit transaction on policy account
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Salvage Received  ──►  Credit applied to claim cost offset
+</code></pre></div>
+<h3 id="deductible-collection-cc-bc">Deductible Collection (CC → BC)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ClaimCenter                           BillingCenter
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    │                                      │
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    │── Deductible due (REST) ───────────► │── Creates deductible charge
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    │                                      │── Adds to next invoice
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    │◄─ Payment confirmed ─────────────── │
+</code></pre></div>
+<hr />
+<h2 id="7-external-system-integration-patterns">7. External System Integration Patterns</h2>
+<h3 id="integration-architecture-overview">Integration Architecture Overview</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>┌──────────────┐    REST (sync)     ┌──────────────────┐
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>│   External   │ ◄────────────────► │   xCenter        │
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>│   System     │    Messaging       │   (PC / BC / CC) │
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>└──────────────┘ ◄────────────────► └──────────────────┘
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>                    Plugin/Event
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>When to Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Synchronous REST</strong></td>
+<td>Real-time, response needed immediately</td>
+<td>Payment gateway auth</td>
+</tr>
+<tr>
+<td><strong>Async Messaging</strong></td>
+<td>Fire-and-forget, high volume</td>
+<td>Policy bound → BC</td>
+</tr>
+<tr>
+<td><strong>Plugin</strong></td>
+<td>Intercept internal behavior</td>
+<td>Custom payment allocation</td>
+</tr>
+<tr>
+<td><strong>Batch / File</strong></td>
+<td>Legacy systems, bulk data</td>
+<td>Premium bordereaux export</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="rest-integration-inbound-to-bc">REST Integration (Inbound to BC)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>External System ──► Integration Gateway ──► BillingCenter API
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>POST<span class="w"> </span>/bc/rest/apis/v1/accounts/<span class="o">{</span>accountId<span class="o">}</span>/payments
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Authorization:<span class="w"> </span>Bearer<span class="w"> </span>&lt;token&gt;
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Content-Type:<span class="w"> </span>application/json
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="o">{</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">1500</span>.00,
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="s2">&quot;currency&quot;</span>:<span class="w"> </span><span class="s2">&quot;USD&quot;</span>,
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">  </span><span class="s2">&quot;paymentMethod&quot;</span>:<span class="w"> </span><span class="s2">&quot;CreditCard&quot;</span>,
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">  </span><span class="s2">&quot;referenceNumber&quot;</span>:<span class="w"> </span><span class="s2">&quot;TXN-20240101-001&quot;</span>,
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span><span class="s2">&quot;effectiveDate&quot;</span>:<span class="w"> </span><span class="s2">&quot;2024-01-15&quot;</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="o">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// Business Purpose: Validate inbound payment from payment gateway before recording</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1">// Edge Case: Duplicate reference numbers from gateway retries</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">ExternalPaymentPlugin</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IPaymentPlugin</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="kd">override</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nf">validatePayment</span><span class="o">(</span><span class="n">payment</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Payment</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">existing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findByReferenceNumber</span><span class="o">(</span><span class="n">payment</span><span class="o">.</span><span class="na">ReferenceNumber</span><span class="o">)</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">existing</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">      </span><span class="n">errors</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;Duplicate payment reference: </span><span class="o">${</span><span class="n">payment</span><span class="o">.</span><span class="na">ReferenceNumber</span><span class="o">}</span><span class="s">&quot;</span><span class="o">)</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">errors</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="o">}</span>
+</code></pre></div>
+<hr />
+<h3 id="async-messaging-outbound-from-bc">Async Messaging (Outbound from BC)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>BillingCenter ──► Message Queue (JMS) ──► GL System
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>                                     └──► Notification Service
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>                                     └──► Data Warehouse
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Trigger</th>
+<th>Consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InvoiceDue</code></td>
+<td>Invoice becomes due</td>
+<td>Notification service</td>
+</tr>
+<tr>
+<td><code>PaymentReceived</code></td>
+<td>Payment applied</td>
+<td>ERP / GL system</td>
+</tr>
+<tr>
+<td><code>DelinquencyInitiated</code></td>
+<td>Delinquency starts</td>
+<td>CRM</td>
+</tr>
+<tr>
+<td><code>PolicyCancelled</code></td>
+<td>BC-initiated cancellation</td>
+<td>Data warehouse</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="plugin-based-integration-key-bc-plugins">Plugin-Based Integration (Key BC Plugins)</h3>
+<table>
+<thead>
+<tr>
+<th>Plugin Interface</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IPaymentPlugin</code></td>
+<td>Intercept payment creation / validation</td>
+</tr>
+<tr>
+<td><code>IBillingInstructionPlugin</code></td>
+<td>Hook into instruction processing</td>
+</tr>
+<tr>
+<td><code>IDelinquencyPlugin</code></td>
+<td>Custom delinquency trigger logic</td>
+</tr>
+<tr>
+<td><code>ICommissionPlugin</code></td>
+<td>Custom commission calculation</td>
+</tr>
+<tr>
+<td><code>IPaymentAllocationPlugin</code></td>
+<td>Control how payments are applied</td>
+</tr>
+<tr>
+<td><code>IInvoicePlugin</code></td>
+<td>Hook into invoice generation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Plugin registration:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">&lt;plugin-config&gt;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">interface=</span><span class="s">&quot;gw.plugin.billing.IPaymentPlugin&quot;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">          </span><span class="na">class=</span><span class="s">&quot;gw.bc.plugin.ExternalPaymentPlugin&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">interface=</span><span class="s">&quot;gw.plugin.billing.IDelinquencyPlugin&quot;</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">          </span><span class="na">class=</span><span class="s">&quot;gw.bc.plugin.CustomDelinquencyPlugin&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="nt">&lt;/plugin-config&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="8-xcenter-comparison">8. xCenter Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>PolicyCenter</th>
+<th>BillingCenter</th>
+<th>ClaimCenter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core Object</strong></td>
+<td>Policy / Job</td>
+<td>Account / Invoice</td>
+<td>Claim / Exposure</td>
+</tr>
+<tr>
+<td><strong>Transaction Model</strong></td>
+<td>Policy Jobs</td>
+<td>Financial Transactions</td>
+<td>Reserve / Payment Transactions</td>
+</tr>
+<tr>
+<td><strong>Workflow Driver</strong></td>
+<td>UW Rules + Approval</td>
+<td>Payment Plans + Delinquency</td>
+<td>Adjuster Assignment + SLA</td>
+</tr>
+<tr>
+<td><strong>Key Integration Out</strong></td>
+<td>BC (charges), CC (policy data)</td>
+<td>GL, Payment Gateway</td>
+<td>BC (recovery), Vendors</td>
+</tr>
+<tr>
+<td><strong>Key Integration In</strong></td>
+<td>Agent Portals, Rating</td>
+<td>PC (policy events)</td>
+<td>PC (coverage), Vendors</td>
+</tr>
+<tr>
+<td><strong>Financial Impact</strong></td>
+<td>Premium determination</td>
+<td>Premium collection</td>
+<td>Loss payment</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-cloud-vs-on-premise">9. Cloud vs On-Premise</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>On-Premise</th>
+<th>Guidewire Cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Customer-managed servers</td>
+<td>Guidewire-managed AWS</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>Direct DB / SOAP / JMS</td>
+<td>REST via Integration Gateway</td>
+</tr>
+<tr>
+<td><strong>Configuration</strong></td>
+<td>Full filesystem access</td>
+<td>Studio + App Events</td>
+</tr>
+<tr>
+<td><strong>Upgrades</strong></td>
+<td>Manual, infrequent</td>
+<td>Continuous delivery</td>
+</tr>
+<tr>
+<td><strong>Extension points</strong></td>
+<td>Plugins, Gosu, PCF</td>
+<td>App Events, Accelerators, REST</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Cloud Constraint</p>
+<p>In Guidewire Cloud, outbound calls <strong>cannot</strong> be made directly from Gosu plugins.
+All external calls must go through <strong>Integration Gateway</strong> or <strong>App Events</strong>.</p>
+</div>
+<hr />
+<h2 id="10-core-architecture-principles">10. Core Architecture Principles</h2>
+<ul>
+<li><strong>Never bypass GORM</strong> — no raw SQL. All data access through entities.</li>
+<li><strong>Plugins over core changes</strong> — extend via plugin interfaces only.</li>
+<li><strong>Bundle discipline</strong> — always control transaction scope. Avoid nested bundles.</li>
+<li><strong>Upgrade safety</strong> — <code>gsrc/</code> and <code>config/</code> survive upgrades; core edits do not.</li>
+<li><strong>OOTB first</strong> — evaluate platform capability before writing custom logic.</li>
+<li><strong>Contact Manager</strong> — never duplicate contact data across xCenters; always reference CM.</li>
+</ul>
+<hr />
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="integration-patterns/">Integration Patterns</a></li>
+<li><a href="design-decisions/">Design Decisions</a></li>
+<li><a href="../../gosu-patterns/bundle-handling.md">Bundle Handling Patterns</a></li>
+<li><a href="../../gosu-patterns/query-patterns.md">Query Patterns</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 — Personal Learning Journal
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Sakthi-S99" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in/Sakthi-S99" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

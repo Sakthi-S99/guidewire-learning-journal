@@ -10,13 +10,13 @@ Personal knowledge base — BillingCenter, Gosu, Architecture & Privacy-focused 
 
 ```
 docs/
+├── architecture/       # Design decisions & integration patterns
 ├── concepts/           # BC domain knowledge
 │   ├── invoicing/
 │   ├── payment-plans/
 │   ├── delinquency/
 │   └── billing-center-core/
 ├── gosu-patterns/      # Reusable code patterns & pitfalls
-├── architecture/       # Design decisions & integration patterns
 ├── rca-library/        # Root cause analyses from real incidents
 │   └── incidents/
 └── ai-privacy/         # Local LLM & privacy-focused AI tooling
