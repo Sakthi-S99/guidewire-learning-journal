@@ -69,14 +69,15 @@ nav:
     - Integration Patterns: architecture/integration-patterns/index.md
   - Concepts:
     - Overview: concepts/index.md
+    - BillingCenter Core: concepts/billing-center-core/index.md
     - Invoicing: concepts/invoicing/index.md
     - Payment Plans: concepts/payment-plans/index.md
     - Delinquency: concepts/delinquency/index.md
-    - BillingCenter Core: concepts/billing-center-core/index.md
   - Gosu Patterns:
     - Overview: gosu-patterns/index.md
     - Bundle Handling: gosu-patterns/bundle-handling.md
     - Query Patterns: gosu-patterns/query-patterns.md
+    - Plugin Patterns: gosu-patterns/plugin-patterns.md
     - Common Pitfalls: gosu-patterns/common-pitfalls.md
   - RCA Library:
     - Overview: rca-library/index.md
