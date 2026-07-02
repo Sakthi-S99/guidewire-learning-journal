@@ -174,18 +174,112 @@ curl http://localhost:11434/api/tags
 
 ---
 
+## Open WebUI — Local Chat Interface
+
+Browser-based UI for interacting with Ollama models — similar to ChatGPT but fully local.
+
+**Image:** `ghcr.io/open-webui/open-webui:ollama`  
+**Access:** `http://localhost:3000`  
+**Restart policy:** `no` — starts only on demand
+
+### On-Demand Control
+
+```bash
+webui-start    # start the container
+webui-stop     # stop when done
+webui-status   # check if running
+```
+
+### Initial Setup
+
+```bash
+# First-time run (already done — for reference)
+docker run -d \
+  --name open-webui \
+  --restart=no \
+  -p 3000:8080 \
+  -v open-webui:/app/backend/data \
+  --add-host=host.docker.internal:host-gateway \
+  -e OLLAMA_BASE_URL=http://host.docker.internal:11434 \
+  ghcr.io/open-webui/open-webui:ollama
+
+# Fix restart policy if needed
+docker update --restart=no open-webui
+```
+
+!!! tip "Workflow"
+    Start Ollama first (`ollama-local`), then Open WebUI (`webui-start`).
+    Stop both when done to free RAM.
+
+---
+
+## `.bashrc` Configuration
+
+Full optimized Ollama + WebUI block for `~/.bashrc`:
+
+```bash
+# ─── Ollama Local AI — Intel Core Ultra i7 + Arc + 16GB ──────────────────────
+
+# Single inference — prevents RAM spikes
+export OLLAMA_NUM_PARALLEL=1
+
+# One model in memory at a time — essential for 16GB
+export OLLAMA_MAX_LOADED_MODELS=1
+
+# Keep model warm for 15min — prevents mid-session reloads
+export OLLAMA_KEEP_ALIVE=15m
+
+# Flash Attention — Intel Arc supports it, reduces memory per token
+export OLLAMA_FLASH_ATTENTION=1
+
+# Allow Continue.dev and local browser clients
+export OLLAMA_ORIGINS="*"
+
+# Ollama service
+alias ollama-local='ollama serve'
+
+# Quick model launch
+alias ai-code='ollama run qwen2.5-coder:latest'
+alias ai-think='ollama run qwen3:14b'
+alias ai-docs='ollama run mistral-nemo:latest'
+
+# Open WebUI — on-demand only
+alias webui-start='docker start open-webui'
+alias webui-stop='docker stop open-webui'
+alias webui-status='docker ps --filter name=open-webui'
+```
+
+Apply changes:
+```bash
+source ~/.bashrc
+```
+
+---
+
 ## Troubleshooting
 
 **Continue.dev can't detect Ollama:**
 ```sh
 curl http://localhost:11434/api/tags
-# If no response, run: ollama serve
+# If no response: ollama-local
+```
+
+**Open WebUI not loading:**
+```sh
+webui-status   # check if container is running
+webui-start    # start if stopped
+# Ensure Ollama is running first
 ```
 
 **Performance is slow:**
-- Lower the context window in `config.json`
-- Switch to Gemma 2B instead of larger models
-- Close heavy applications before running inference
+- Switch to a lighter model (`ai-code` instead of `ai-think`)
+- Lower `contextLength` in `config.yaml` (try 2048)
+- Close heavy applications before inference
+
+**System freezes:**
+- Check RAM: `free -h`
+- Qwen3 14B is the likely cause — switch to `qwen2.5-coder` or `mistral-nemo`
+- Increase swap space if RAM is consistently full
 
 **System freezes:**
 - Check RAM: `free -h`
