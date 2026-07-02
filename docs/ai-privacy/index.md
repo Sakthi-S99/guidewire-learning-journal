@@ -33,14 +33,21 @@ Continue.dev          ← AI coding assistant (IDE plugin)
    │
 Ollama                ← Local LLM runtime
    │
-Local LLMs            ← Gemma / Qwen / DeepSeek (quantized)
+┌──────────────────────────────────────────┐
+│  Qwen2.5-Coder   → coding (primary)      │
+│  Qwen3 14B       → reasoning             │
+│  Mistral Nemo    → docs & explanations   │
+│  Llama 3.1 8B    → backup chat           │
+│  BGE-M3          → embeddings / RAG      │
+└──────────────────────────────────────────┘
 ```
 
 **Why this stack:**
 
 - **Ollama** — simple model management, REST API out of the box
-- **Continue.dev** — VS Code plugin that replaces GitHub Copilot with a local model
-- **Quantized models (Q4)** — run efficiently on 16GB RAM without a GPU
+- **Continue.dev** — replaces GitHub Copilot with fully local models
+- **Role-separated models** — right model for the right task, not one model for everything
+- **BGE-M3** — enables semantic codebase search and RAG without cloud indexing
 
 ---
 
@@ -65,29 +72,77 @@ ollama serve
 # Default endpoint: http://localhost:11434
 ```
 
-### 3. Local Models
+### 3. Pull Models
 
 ```sh
-# General assistant — fast, lightweight
-ollama pull gemma:2b
+ollama pull qwen2.5-coder:latest   # primary coding
+ollama pull qwen3:14b              # reasoning
+ollama pull mistral-nemo:latest    # docs & explanations
+ollama pull llama3.1:8b            # backup
+ollama pull bge-m3:latest          # embeddings
 
-# Coding assistant — best for code gen and refactoring
-ollama pull qwen2.5-coder:7b
-
-# Optional — deeper coding tasks
-ollama pull deepseek-coder:6.7b
-
-# Verify installed
+# Verify
 ollama list
 ```
 
 ### 4. Continue.dev
 
 - VS Code → Extensions → Search `Continue` → Install
-- Config file: `~/.continue/config.json`
+- Config file: `~/.continue/config.yaml`
 - Restart VS Code after configuring
 
-### 5. Validate
+### 5. Continue.dev Config (`~/.continue/config.yaml`)
+
+```yaml
+name: Local Config
+version: 1.1.0
+schema: v1
+
+defaultCompletionOptions:
+  contextLength: 4096
+  temperature: 0.2
+
+models:
+  # Primary coding model — chat, edit, apply, autocomplete
+  - name: Qwen2.5-Coder
+    provider: ollama
+    model: qwen2.5-coder:latest
+    roles:
+      - chat
+      - edit
+      - apply
+      - autocomplete
+
+  # General reasoning
+  - name: Qwen3
+    provider: ollama
+    model: qwen3:14b
+    roles:
+      - chat
+
+  # Documentation & explanations
+  - name: Mistral Nemo
+    provider: ollama
+    model: mistral-nemo:latest
+    roles:
+      - chat
+
+  # Backup chat model
+  - name: Llama 3.1
+    provider: ollama
+    model: llama3.1:8b
+    roles:
+      - chat
+
+  # Embedding model — RAG, codebase indexing, semantic search
+  - name: BGE-M3
+    provider: ollama
+    model: bge-m3:latest
+    roles:
+      - embed
+```
+
+### 6. Validate
 
 ```sh
 curl http://localhost:11434/api/tags
@@ -97,11 +152,13 @@ curl http://localhost:11434/api/tags
 
 ## Model Selection Guide
 
-| Model | Best For | When to Use |
+| Model | Role | Best For |
 |---|---|---|
-| **Gemma 2B** | Fast prompts, docs, terminal help | Lightweight tasks, quick answers |
-| **Qwen2.5-Coder 7B** | Code gen, refactoring, debugging | Main coding assistant |
-| **DeepSeek Coder 6.7B** | Architecture assistance | Complex code tasks |
+| **Qwen2.5-Coder** | Coding (primary) | Code gen, refactoring, debugging, autocomplete |
+| **Qwen3 14B** | Reasoning | Architecture decisions, complex analysis |
+| **Mistral Nemo** | Documentation | Write-ups, explanations, RCA drafts |
+| **Llama 3.1 8B** | Backup | General chat when other models are loaded |
+| **BGE-M3** | Embeddings | Codebase indexing, semantic search, RAG |
 
 ---
 
@@ -109,9 +166,11 @@ curl http://localhost:11434/api/tags
 
 !!! tip "Running efficiently on 16GB RAM"
     - Use **quantized models (Q4)** — significant RAM saving with minimal quality loss
-    - Keep context window between **4K–8K tokens**
-    - Run **one active model at a time**
+    - Context window set to **4096 tokens** in config — balanced for RAM constraints
+    - Temperature at **0.2** — low randomness suits code generation
+    - Run **one active model at a time** — Qwen3 14B and Qwen2.5-Coder together will strain 16GB
     - Monitor memory: `htop` or `free -h`
+    - **Qwen3 14B** is the heaviest — close other apps before loading it
 
 ---
 
@@ -160,4 +219,4 @@ curl http://localhost:11434/api/tags
 
 ## Related
 
-- [GitHub — Local AI Dev Stack](https://github.com/Sakthi-S99/Local-AI-Driven-DevStack)
+- [GitHub — Local AI Dev Stack](https://github.com/Sakthi-S99) ← *link your repo here*
