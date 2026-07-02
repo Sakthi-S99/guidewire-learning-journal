@@ -5,7 +5,7 @@ site_url: https://Sakthi-S99.github.io/guidewire-learning-journal/
 
 repo_name: guidewire-learning-journal
 repo_url: https://github.com/Sakthi-S99/guidewire-learning-journal
-edit_uri: edit/main/docs/
+
 
 theme:
   name: material
@@ -91,5 +91,10 @@ extra:
       link: https://github.com/Sakthi-S99
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/Sakthi-S99
+  comments:
+    enabled: true
+
+extra_javascript:
+  - javascripts/giscus.js
 
 copyright: Copyright &copy; 2025 — Personal Learning Journal
