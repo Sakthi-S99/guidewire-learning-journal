@@ -247,6 +247,15 @@ alias ai-docs='ollama run mistral-nemo:latest'
 alias webui-start='docker start open-webui'
 alias webui-stop='docker stop open-webui'
 alias webui-status='docker ps --filter name=open-webui'
+
+# ─── Arivu — Local AI Project ─────────────────────────────────────────────────
+# Project alias — update ARIVU_HOME if project is renamed or moved
+export ARIVU_HOME="$HOME/projects/arivu"
+export AI_PROJECT_NAME="arivu"         # rename here if project name changes
+
+alias arivu='cd $ARIVU_HOME'
+alias arivu-start='ollama-local & webui-start'   # start full stack
+alias arivu-stop='webui-stop && pkill ollama'    # stop full stack
 ```
 
 Apply changes:
@@ -286,6 +295,40 @@ webui-start    # start if stopped
 - Increase swap space
 - Use Gemma over larger models
 - Reduce project indexing in Continue settings
+
+---
+
+## Arivu — Local AI Project
+
+**Arivu** (Tamil: *அறிவு* — intelligence, knowledge) is the name for this local AI setup.
+
+| Property | Value |
+|---|---|
+| **Project name** | Arivu |
+| **Alias** | `arivu` |
+| **Home dir** | `~/projects/arivu` |
+| **Stack** | Ollama + Open WebUI + Qdrant + BGE-M3 |
+| **Purpose** | Private, local AI tooling for development and learning |
+
+### Rename Guide
+
+If the project name changes in future — update two places only:
+
+```bash
+# ~/.bashrc
+export ARIVU_HOME="$HOME/projects/new-name"   # ← update path
+export AI_PROJECT_NAME="new-name"              # ← update name
+
+# Then rename the folder
+mv ~/projects/arivu ~/projects/new-name
+source ~/.bashrc
+```
+
+No other files need changing — everything else references `$ARIVU_HOME`.
+
+<!---!!! note
+    Arivu is separate from PrithviVeda AIOS. Arivu = personal local tooling. PrithviVeda = structured multi-agent platform (in progress).
+    -->
 
 ---
 
