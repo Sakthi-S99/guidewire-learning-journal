@@ -84,6 +84,8 @@ nav:
     - Template: rca-library/template.md
   - AI & Privacy:
     - Overview: ai-privacy/index.md
+    - RAG Pipeline: ai-privacy/rag-pipeline.md
+    - RAG Technical Reference: ai-privacy/rag-reference.md
 
 extra:
   social:

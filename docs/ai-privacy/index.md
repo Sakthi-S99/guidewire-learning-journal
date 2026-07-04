@@ -248,6 +248,11 @@ alias webui-start='docker start open-webui'
 alias webui-stop='docker stop open-webui'
 alias webui-status='docker ps --filter name=open-webui'
 
+# Qdrant — vector DB, on-demand
+alias qdrant-start='docker start qdrant'
+alias qdrant-stop='docker stop qdrant'
+alias qdrant-status='docker ps --filter name=qdrant'
+
 # ─── Arivu — Local AI Project ─────────────────────────────────────────────────
 # Project alias — update ARIVU_HOME if project is renamed or moved
 export ARIVU_HOME="$HOME/projects/arivu"
@@ -328,8 +333,7 @@ No other files need changing — everything else references `$ARIVU_HOME`.
 
 <!---!!! note
     Arivu is separate from PrithviVeda AIOS. Arivu = personal local tooling. PrithviVeda = structured multi-agent platform (in progress).
-    -->
-
+-->
 ---
 
 ## Future Roadmap
