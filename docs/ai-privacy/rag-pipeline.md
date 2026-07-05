@@ -1,8 +1,8 @@
 # Arivu RAG Pipeline — Reference Documentation (Phase 1–2)
 
 **System:** Intel Core Ultra i7 · Intel Arc iGPU · 16GB RAM · Kubuntu
-**Stack:** Ollama + BGE-M3 + Qdrant + Plain Python
-**Status:** Phase 1 (Infrastructure) complete · Phase 2 (Knowledge Base/RAG) built, pending real-doc testing
+**Stack:** Ollama + BGE-M3 + Qdrant + fastembed (BM25 + reranker) + Plain Python
+**Status:** Phase 1 (Infrastructure) complete · Phase 2 (Knowledge Base/RAG) built — hybrid search, reranking, and query expansion live; eval gate harness scaffolded, not yet run
 
 ---
 
@@ -56,32 +56,46 @@ Project layout:
 | **Context-only prompting / grounding** | Instructing the LLM explicitly to answer *only* from supplied context and say so if the answer isn't present — the main hallucination-mitigation lever in this design. |
 | **Ingestion pipeline** | The offline/batch process: read files → chunk → embed → upsert into Qdrant. Run via `arivu-ingest` (`--reset` rebuilds the collection). |
 | **Query pipeline** | The online/interactive process: embed a question → search → build context → call LLM → return answer with cited sources. Run via `arivu-ask`. |
-| **Reranking** *(not yet implemented)* | A second-pass model that re-scores the top-K retrieved chunks for relevance before they're sent to the LLM — improves precision beyond raw vector similarity. |
-| **Hybrid search** *(not yet implemented)* | Combining vector similarity with keyword/BM25 search, useful for exact-term queries (error codes, ticket IDs) that pure semantic search can miss. |
+| **Reranking** *(implemented)* | Cross-encoder (`Xenova/ms-marco-MiniLM-L-6-v2`) re-scores the top-K retrieved chunks for relevance before they're sent to the LLM — improves precision beyond raw vector similarity. |
+| **Hybrid search** *(implemented)* | Dense (BGE-M3) + sparse (BM25 via fastembed) search combined via Reciprocal Rank Fusion (RRF). Catches exact-term queries (error codes, ticket IDs) that pure semantic search can miss. |
+| **RRF (Reciprocal Rank Fusion)** | Method for merging two ranked result lists (dense + sparse) into one score, using each result's *rank position* rather than raw similarity scores — avoids scale mismatches between cosine and BM25 scores. |
+| **Named vectors** | Qdrant collections can hold multiple vector types per point (dense + sparse) under named fields. Adopting this for hybrid search is a **schema-breaking change** — requires `--reset` to re-ingest, since existing points only have the dense vector. |
+| **Query expansion** | Expanding the user's query with a Guidewire acronym dictionary (BC, PC, CC, PPC, OOTB, etc.) before embedding/search, so abbreviated questions still match full-term document content. |
+| **Score threshold filtering** | Discarding retrieved chunks below a minimum relevance score, so low-confidence matches don't get passed to the LLM as if they were reliable context. |
+| **Content-hash deduplication** | Hashing retrieved chunk text and merging duplicates that appear across multiple source files, so the same content isn't sent to the LLM twice under different filenames. |
 | **Metadata filtering** *(not yet implemented)* | Restricting Qdrant search to points matching payload conditions, e.g. `source == "billing-center"`, before/alongside vector search. |
+| **Precision@k / Recall@k / MRR** | Retrieval evaluation metrics. Precision@k = fraction of top-k retrieved chunks that are relevant; Recall@k = fraction of all relevant chunks captured in top-k; MRR (Mean Reciprocal Rank) = how high the first relevant result ranks, averaged across test queries. Used as the Phase 2 gate criteria. |
+| **LLM-as-judge** | Using an LLM to score generated answers against a reference/expected answer, as an automated proxy for answer-quality evaluation. |
 
 ---
 
 ## 3. Logic Behind the Scenes
 
 ### Ingestion (`ingest.py`)
-1. **Extract** — `pypdf` for PDFs, direct read for `.md`/`.txt`. Unsupported types are skipped, not errored.
+1. **Extract** — `pypdf` for PDFs, direct read for `.md`/`.txt`. Unsupported types are skipped, not errored. Image/scan pages are flagged via a chars-per-page heuristic; table structures are detected and handled during extraction.
 2. **Chunk** — word-based fixed-size splitting with overlap; a lightweight, dependency-free approximation of token-based chunking.
-3. **Embed** — each chunk is POSTed individually to Ollama's `/api/embeddings` endpoint with `bge-m3:latest`.
-4. **Store** — each embedding is upserted into Qdrant as a `PointStruct` with a UUID and payload `{source, chunk_index, text}`. `--reset` drops and recreates the collection for a clean rebuild.
+3. **Embed** — chunks are sent to Ollama's batch `/api/embed` endpoint (true batch calls, not one request per chunk), with adaptive batch sizing based on file size to balance throughput against RAM headroom.
+4. **Store** — each embedding is upserted into Qdrant as a `PointStruct` with a deterministic UUID5 (derived from `source::chunk_index`) and payload `{source, chunk_index, text}`. Deterministic IDs make re-ingestion idempotent — re-running never creates duplicates.
+5. **Resume & cleanup** — per-file progress is checkpointed to `.ingest_state.json`; a crash or interrupt resumes from the last completed file instead of restarting. `--clean-orphans` removes points whose source file no longer exists or was reduced to fewer chunks. `--reset` drops and recreates the collection entirely (required for schema changes, e.g. adopting named vectors for hybrid search).
+6. **Logging** — structured, per-stage logs (extract / chunk / embed / upsert) for traceability during long ingestion runs.
 
 ### Query (`ask.py`)
-1. **Embed** the incoming question with the same BGE-M3 model (embedding symmetry between corpus and query is required for meaningful similarity).
-2. **Search** Qdrant for the top-5 nearest points by cosine distance.
-3. **Build context** by concatenating each hit's `text`, labeled with its `source`, separated by `---`.
-4. **Generate** — the context and question are wrapped in a strict prompt template (*"Answer using ONLY the context below… if not present, say so"*) and sent to `qwen3-coder` (or `qwen3`) via `/api/generate`.
-5. **Answer** is returned; sources are available for citation display.
+1. **Expand** the query using a Guidewire acronym dictionary (BC, PC, CC, PPC, OOTB, etc.) so abbreviated questions still match full-term document content.
+2. **Embed** the expanded question with the same BGE-M3 model (embedding symmetry between corpus and query is required for meaningful similarity).
+3. **Hybrid search** — dense (BGE-M3, cosine) and sparse (BM25 via fastembed) results are retrieved in parallel and merged with Reciprocal Rank Fusion (RRF).
+4. **Rerank** — a cross-encoder (`Xenova/ms-marco-MiniLM-L-6-v2`) re-scores the fused candidates for relevance to the original question.
+5. **Filter & dedup** — results below a minimum score threshold are dropped; remaining chunks are deduplicated by content hash so repeated text across files isn't sent to the LLM twice.
+6. **Build context** by concatenating the surviving hits' `text`, labeled with `source`, separated by `---`.
+7. **Generate** — the context and question are wrapped in a strict, anti-hallucination prompt template (*"Answer using ONLY the context below… if not present, say so"*) and sent to `qwen3-coder` (or `qwen3`) via `/api/generate`.
+8. **Answer** is returned; sources are available for citation display.
 
 ### Why these specific design choices
 - **Plain Python over LangChain/LlamaIndex** — deliberate: the goal was hands-on understanding of every step, and heavy frameworks abstract away exactly what was meant to be learned. Also avoids dependency bloat on a 16GB machine.
 - **Word-approx chunking over a real tokenizer** — keeps ingestion light; a real tokenizer (e.g. `tiktoken`) is a candidate upgrade once accuracy matters more than simplicity.
-- **UUID point IDs** — makes re-ingestion idempotent-safe; no accidental overwrites from colliding sequential IDs.
+- **UUID5 point IDs** — makes re-ingestion idempotent-safe; no accidental overwrites from colliding sequential IDs.
 - **Local-only PDFs** — `~/ai-knowledge-base` is explicitly excluded from git; only pipeline code, config, and findings are published to the learning journal.
+- **Hybrid search via named vectors is schema-breaking** — adding a sparse (BM25) vector alongside the existing dense vector changes the collection schema. Existing points only have the dense field, so a `--reset` re-ingest is required; this can't be layered on in place.
+- **Query-side features layer independently** — query expansion and reranking don't touch the stored schema, so they were added without needing a re-ingest; only the hybrid-search change required one.
 
 ---
 
@@ -98,27 +112,24 @@ Every decision above is shaped by the constraint of a **16GB RAM, Intel Arc iGPU
 
 ## 5. Current Limitations
 
-- Retrieval quality is **untested against real documents** — findings table in the working notes is still "pending" across all rows.
-- No reranking — raw top-K cosine hits go straight to the LLM; noisy or partially-relevant chunks aren't filtered further.
+- **Eval gate not yet run** — `eval.py` and the Phase 2 gate harness are scaffolded (Precision@k, Recall@k, MRR) but haven't been executed against real documents; pass/fail thresholds (pass rate ≥80%, MRR ≥0.6) are defined but unconfirmed.
 - No metadata filtering — can't yet scope a query to "only BillingCenter docs" etc.
-- No hybrid/keyword search — exact strings (error codes, class names) rely entirely on semantic similarity, which can under-perform for these.
-- No evaluation harness — no repeatable way to measure retrieval precision/recall or answer quality across chunking/Top-K changes.
-- No incremental ingestion — `--reset` rebuilds the whole collection; there's no diff-based re-ingestion of only changed files.
+- Resume (`.ingest_state.json`) handles crash recovery and orphan cleanup, but there's no content-hash-based incremental re-ingest — editing a file still requires reasoning about whether `--reset` is needed.
+- Reranker and hybrid fusion add latency per query — not yet benchmarked on this hardware to confirm it stays acceptable as the corpus grows.
 
 ---
 
 ## 6. Future Improvement Roadmap
 
-**Near-term (tune current pipeline):**
-- Run real BillingCenter PDFs/MD through it; populate the findings table (chunk size, Top-K, retrieval quality) with actual observations.
+**Near-term (close the Phase 2 gate):**
+- Run `eval.py` against real BillingCenter PDFs/MD; confirm pass rate ≥80% and MRR ≥0.6 before moving to Phase 3.
 - Add metadata filtering (`source`, `doc_type`) to Qdrant queries for scoped retrieval.
-- Add a lightweight reranker pass (e.g. cross-encoder via Ollama or a small local model) before context is built.
+- Benchmark reranker + hybrid fusion latency on this hardware; tune `TOP_K` and score threshold based on real results, not assumptions.
 - Swap word-approx chunking for a real tokenizer if boundary errors show up in testing.
 
 **Mid-term (Phase 2 hardening → Phase 3+ readiness):**
-- Introduce hybrid search (BM25 + vector) for exact-term recall.
-- Incremental ingestion — hash-based change detection so `arivu-ingest` only re-embeds modified files.
-- Basic evaluation harness — a fixed question set with expected sources, run after every pipeline change to catch regressions.
+- Hash-based incremental re-ingestion, so editing one file doesn't require reasoning about a full `--reset`.
+- Expand the eval harness into a regression suite — run automatically after any chunking/retrieval config change.
 - PostgreSQL layer (already in the target stack) for chat history / structured metadata, separating "what was asked" from "what was retrieved."
 
 **Longer-term (per the phase roadmap already set):**
@@ -128,19 +139,34 @@ Every decision above is shaped by the constraint of a **16GB RAM, Intel Arc iGPU
 
 ---
 
-## 7. Operational Reference
+## 7. Evaluation (`eval.py`)
+
+Phase 2 has a hard gate: no phase transition without passing evaluation.
+
+- **LLM-as-judge** — scores generated answers against expected answers for a fixed query set.
+- **Retrieval metrics** — Precision@k, Recall@k, MRR computed against known-relevant chunks per query.
+- **Gate criteria** — pass rate ≥80%, MRR ≥0.6 required before Phase 3 (Teacher Agent) begins.
+- **Status** — harness scaffolded, not yet executed against the real knowledge base.
+
+---
+
+## 8. Operational Reference
 
 ```bash
 # Start Qdrant (on-demand)
 bash setup-qdrant.sh
 
 # Ingest documents
-arivu-ingest              # add/update
-arivu-ingest --reset      # full rebuild
+arivu-ingest              # add/update, resumes from .ingest_state.json if interrupted
+arivu-ingest --reset      # full rebuild (required after schema changes, e.g. named vectors)
+arivu-ingest --clean-orphans   # remove points for deleted/shrunk source files
 
-# Query
+# Query (query expansion → hybrid search → rerank → dedup → generate)
 arivu-ask "How does delinquency cancellation work in BillingCenter?"
 arivu-ask                 # interactive mode
+
+# Evaluate (Phase 2 gate)
+python eval.py            # runs Precision@k / Recall@k / MRR against eval_queries.json
 ```
 
-Key config levers (`config/settings.py`): `CHUNK_SIZE`, `CHUNK_OVERLAP`, `TOP_K`, `COLLECTION`, `EMBED_MODEL`, `LLM_MODEL`.
+Key config levers (`config/settings.py`): `CHUNK_SIZE`, `CHUNK_OVERLAP`, `TOP_K`, `COLLECTION`, `EMBED_MODEL`, `LLM_MODEL`, plus score-threshold and rerank-model settings for the query pipeline.
