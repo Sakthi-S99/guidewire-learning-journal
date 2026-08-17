@@ -64,3 +64,7 @@ Push to `main` → GitHub Actions (`.github/workflows/deploy.yml`) auto-deploys 
 - **Concepts** → one topic per file, cross-link related pages.
 - **Admonitions** → `!!! note`, `!!! warning`, etc. are available via `admonition` / `pymdownx.details`.
 - **Tags** → the `tags` plugin is active; add a tags line at the bottom of files where useful.
+
+---
+
+© Sakthi. All rights reserved. This is a personal portfolio/knowledge base; content may be viewed but not republished or reused without permission.
