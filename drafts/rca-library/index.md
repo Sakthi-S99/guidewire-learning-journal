@@ -17,7 +17,7 @@ Root cause analyses from real production and UAT incidents.
 
 | Date | Component | Severity | Summary |
 |---|---|---|---|
-| _YYYY-MM-DD_ | _Module_ | _P1/P2/P3_ | _[Short description](incidents/filename.md)_ |
+| _YYYY-MM-DD_ | _Module_ | _P1/P2/P3_ | _Short description (linked to `incidents/filename.md`)_ |
 
 ---
 

@@ -570,5 +570,5 @@ BillingCenter ──► Message Queue (JMS) ──► GL System
 
 - [Integration Patterns](integration-patterns/index.md)
 - [Design Decisions](design-decisions/index.md)
-- [Bundle Handling Patterns](../../gosu-patterns/bundle-handling.md)
-- [Query Patterns](../../gosu-patterns/query-patterns.md)
+- [Bundle Handling Patterns](../gosu-patterns/bundle-handling.md)
+- [Query Patterns](../gosu-patterns/query-patterns.md)

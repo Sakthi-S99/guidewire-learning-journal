@@ -16,10 +16,10 @@ My day-to-day spans bug fixes and root cause analysis, configuration and Gosu de
 
 | Section | What You'll Find |
 |---|---|
+| [Projects](projects/index.md) | Things I've built — local AI tooling, RAG pipelines, and more |
 | [Architecture](architecture/index.md) | xCenter architecture, integration flows, design decisions |
 | [Concepts](concepts/index.md) | BillingCenter domain knowledge — invoicing, payment plans, delinquency |
 | [Gosu Patterns](gosu-patterns/index.md) | Reusable code patterns, pitfalls, and best practices |
-| [RCA Library](rca-library/index.md) | Real bug analyses — root cause, fix, and regression notes |
 | [AI & Privacy](ai-privacy/index.md) | Local LLM setups and privacy-focused AI tooling |
 
 ---

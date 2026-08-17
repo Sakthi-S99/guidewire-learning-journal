@@ -28,11 +28,18 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.indexes
     - navigation.top
+    - navigation.footer
     - navigation.instant
+    - navigation.instant.progress
+    - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
     - content.action.edit
   icon:
     repo: fontawesome/brands/github
@@ -40,6 +47,7 @@ theme:
 plugins:
   - search
   - tags
+  - social
 
 markdown_extensions:
   - admonition
@@ -63,6 +71,9 @@ nav:
   - Home: index.md
   - About & Resume: about.md
   - Certifications: certifications.md
+  - Projects:
+    - Overview: projects/index.md
+    - Arivu RAG Pipeline: projects/rag-pipeline.md
   - Architecture:
     - Overview: architecture/index.md
     - Design Decisions: architecture/design-decisions/index.md
@@ -79,9 +90,6 @@ nav:
     - Query Patterns: gosu-patterns/query-patterns.md
     - Plugin Patterns: gosu-patterns/plugin-patterns.md
     - Common Pitfalls: gosu-patterns/common-pitfalls.md
-  - RCA Library:
-    - Overview: rca-library/index.md
-    - Template: rca-library/template.md
   - AI & Privacy:
     - Overview: ai-privacy/index.md
     - RAG Pipeline: ai-privacy/rag-pipeline.md

@@ -34,11 +34,13 @@ Continue.dev          ← AI coding assistant (IDE plugin)
 Ollama                ← Local LLM runtime
    │
 ┌──────────────────────────────────────────┐
-│  Qwen2.5-Coder   → coding (primary)      │
-│  Qwen3 14B       → reasoning             │
-│  Mistral Nemo    → docs & explanations   │
-│  Llama 3.1 8B    → backup chat           │
-│  BGE-M3          → embeddings / RAG      │
+│  Qwen2.5-Coder 7B  → coding (primary)    │
+│  Qwen3-Coder 30B   → advanced/agentic    │
+│  Qwen3 14B         → reasoning           │
+│  Muse Glimmer      → agentic experiments │
+│  Mistral Nemo      → docs & explanations │
+│  Llama 3.1 8B      → backup chat         │
+│  BGE-M3            → embeddings / RAG    │
 └──────────────────────────────────────────┘
 ```
 
@@ -76,7 +78,9 @@ ollama serve
 
 ```sh
 ollama pull qwen2.5-coder:latest   # primary coding
+ollama pull qwen3-coder:latest     # advanced coding / agentic
 ollama pull qwen3:14b              # reasoning
+ollama pull muse-glimmer:latest    # agentic / reasoning experiments
 ollama pull mistral-nemo:latest    # docs & explanations
 ollama pull llama3.1:8b            # backup
 ollama pull bge-m3:latest          # embeddings
@@ -95,16 +99,21 @@ ollama list
 
 ```yaml
 name: Local Config
-version: 1.1.0
+version: 1.2.0
 schema: v1
 
+# Global defaults
 defaultCompletionOptions:
-  contextLength: 4096
+  contextLength: 8192
   temperature: 0.2
+  maxTokens: 2048
 
 models:
-  # Primary coding model — chat, edit, apply, autocomplete
-  - name: Qwen2.5-Coder
+
+  # Primary coding model — best balance of speed and coding quality
+  # for daily development. Use for autocomplete, lightweight edits,
+  # and normal coding.
+  - name: Qwen2.5-Coder 7B
     provider: ollama
     model: qwen2.5-coder:latest
     roles:
@@ -112,34 +121,136 @@ models:
       - edit
       - apply
       - autocomplete
+    defaultCompletionOptions:
+      contextLength: 8192
+      temperature: 0.15
+      maxTokens: 2048
+    autocompleteOptions:
+      debounceDelay: 300
+      maxPromptTokens: 1024
+      onlyMyCode: true
+      useImports: true
+      useRecentlyEdited: true
+      useRecentlyOpened: true
+      useCache: true
 
-  # General reasoning
-  - name: Qwen3
+  # Advanced coding / agent model — strongest coding model installed.
+  # Use for difficult debugging, refactoring, architecture, multi-file
+  # changes and agentic coding. Do NOT use this for autocomplete.
+  - name: Qwen3-Coder 30B
+    provider: ollama
+    model: qwen3-coder:latest
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      contextLength: 8192
+      temperature: 0.2
+      maxTokens: 4096
+
+  # General reasoning — good local model for reasoning, technical
+  # explanations, architecture discussions and problem solving.
+  - name: Qwen3 14B
     provider: ollama
     model: qwen3:14b
     roles:
       - chat
+      - edit
+    defaultCompletionOptions:
+      contextLength: 8192
+      temperature: 0.25
+      maxTokens: 4096
 
-  # Documentation & explanations
+  # Agentic / reasoning experimental model — useful for experimenting
+  # with agentic workflows and complex reasoning. Kept out of
+  # autocomplete because of its size.
+  - name: Muse Glimmer
+    provider: ollama
+    model: muse-glimmer:latest
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      contextLength: 8192
+      temperature: 0.4
+      maxTokens: 4096
+
+  # Documentation / explanation
   - name: Mistral Nemo
     provider: ollama
     model: mistral-nemo:latest
     roles:
       - chat
+    defaultCompletionOptions:
+      contextLength: 8192
+      temperature: 0.3
+      maxTokens: 3072
 
-  # Backup chat model
-  - name: Llama 3.1
+  # Lightweight fallback — fast, low-resource model
+  - name: Llama 3.1 8B
     provider: ollama
     model: llama3.1:8b
     roles:
       - chat
+    defaultCompletionOptions:
+      contextLength: 8192
+      temperature: 0.25
+      maxTokens: 2048
 
-  # Embedding model — RAG, codebase indexing, semantic search
+  # Embeddings / codebase RAG — used for semantic codebase search
+  # and embeddings.
   - name: BGE-M3
     provider: ollama
     model: bge-m3:latest
     roles:
       - embed
+    embedOptions:
+      maxChunkSize: 512
+      maxBatchSize: 4
+
+# Context providers — make Continue useful for repository-level development
+context:
+  - provider: code
+  - provider: file
+  - provider: diff
+  - provider: terminal
+
+# Development rules — steer chat/edit/agent behavior
+rules:
+  - |
+    You are a senior software engineering assistant.
+    Prefer understanding the existing codebase before suggesting changes.
+  - |
+    When modifying code:
+    1. Preserve existing architecture and conventions.
+    2. Avoid unnecessary refactoring.
+    3. Explain important assumptions.
+    4. Consider error handling, logging, performance and maintainability.
+    5. Do not invent APIs, classes or configuration that are not present.
+  - |
+    For debugging:
+    1. Identify the likely root cause.
+    2. Explain why the issue occurs.
+    3. Propose the smallest safe fix.
+    4. Identify possible side effects.
+    5. Suggest appropriate tests.
+  - |
+    For Guidewire/Gosu code:
+    Prefer Guidewire-native patterns and existing project conventions.
+    Do not replace Gosu with Java unless explicitly requested.
+  - |
+    For Java:
+    Prefer clean object-oriented design, meaningful names,
+    appropriate exception handling and testable code.
+  - |
+    For SQL:
+    Prefer readable, performant queries and explain indexing
+    or query-performance implications when relevant.
+  - |
+    Never expose, invent or request secrets such as passwords,
+    API keys, tokens or private credentials.
 ```
 
 ### 6. Validate
@@ -154,8 +265,10 @@ curl http://localhost:11434/api/tags
 
 | Model | Role | Best For |
 |---|---|---|
-| **Qwen2.5-Coder** | Coding (primary) | Code gen, refactoring, debugging, autocomplete |
+| **Qwen2.5-Coder 7B** | Coding (primary) | Code gen, refactoring, debugging, autocomplete |
+| **Qwen3-Coder 30B** | Advanced coding / agent | Hard debugging, multi-file changes, agentic coding (never autocomplete) |
 | **Qwen3 14B** | Reasoning | Architecture decisions, complex analysis |
+| **Muse Glimmer** | Agentic experiments | Experimenting with agentic workflows, complex reasoning |
 | **Mistral Nemo** | Documentation | Write-ups, explanations, RCA drafts |
 | **Llama 3.1 8B** | Backup | General chat when other models are loaded |
 | **BGE-M3** | Embeddings | Codebase indexing, semantic search, RAG |
@@ -166,11 +279,11 @@ curl http://localhost:11434/api/tags
 
 !!! tip "Running efficiently on 16GB RAM"
     - Use **quantized models (Q4)** — significant RAM saving with minimal quality loss
-    - Context window set to **4096 tokens** in config — balanced for RAM constraints
-    - Temperature at **0.2** — low randomness suits code generation
-    - Run **one active model at a time** — Qwen3 14B and Qwen2.5-Coder together will strain 16GB
+    - Global context window is **8192 tokens**, with per-model overrides (autocomplete stays lean at 1024 max prompt tokens)
+    - Temperature tuned per role — **0.15** for autocomplete, **0.2–0.25** for coding/reasoning, **0.4** for the experimental agentic model
+    - Run **one active model at a time** (`OLLAMA_MAX_LOADED_MODELS=1`) — Qwen3-Coder 30B or Qwen3 14B alongside anything else will strain 16GB
     - Monitor memory: `htop` or `free -h`
-    - **Qwen3 14B** is the heaviest — close other apps before loading it
+    - **Qwen3-Coder 30B** is the heaviest — close other apps before loading it
 
 ---
 
@@ -240,7 +353,9 @@ alias ollama-local='ollama serve'
 
 # Quick model launch
 alias ai-code='ollama run qwen2.5-coder:latest'
+alias ai-agent='ollama run qwen3-coder:latest'
 alias ai-think='ollama run qwen3:14b'
+alias ai-muse='ollama run muse-glimmer:latest'
 alias ai-docs='ollama run mistral-nemo:latest'
 
 # Open WebUI — on-demand only
@@ -292,13 +407,8 @@ webui-start    # start if stopped
 
 **System freezes:**
 - Check RAM: `free -h`
-- Qwen3 14B is the likely cause — switch to `qwen2.5-coder` or `mistral-nemo`
+- Qwen3-Coder 30B or Qwen3 14B are the likely cause — switch to `qwen2.5-coder` or `mistral-nemo`
 - Increase swap space if RAM is consistently full
-
-**System freezes:**
-- Check RAM: `free -h`
-- Increase swap space
-- Use Gemma over larger models
 - Reduce project indexing in Continue settings
 
 ---

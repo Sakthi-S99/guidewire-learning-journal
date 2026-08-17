@@ -1,0 +1,54 @@
+# Arivu RAG Pipeline
+
+> A fully local retrieval-augmented generation system — plain Python, no LangChain/LlamaIndex — built to query a private knowledge base without any data leaving the machine.
+
+---
+
+## At a Glance
+
+| | |
+|---|---|
+| **Status** | 🔄 Phase 2 (Knowledge Base / RAG) — feature-complete for MVP, eval gate not yet run |
+| **Stack** | Ollama · BGE-M3 (embeddings) · Qdrant (vector DB) · fastembed (BM25 + reranker) · Plain Python |
+| **Hardware** | Intel Core Ultra i7 · Intel Arc iGPU · 16GB RAM · Kubuntu |
+| **Part of** | [Arivu — Local AI Project](../ai-privacy/index.md#arivu-local-ai-project) |
+
+---
+
+## What It Does
+
+Ingests local PDFs and Markdown into a vector database, then answers questions grounded strictly in that content:
+
+```
+Local PDFs / Markdown  →  chunk → embed → store in Qdrant
+                                                │
+Question  →  expand → embed → hybrid search → rerank → context → LLM answer
+```
+
+- **Ingestion** (`arivu-ingest`) — parses, chunks, embeds, and upserts documents with resumable, crash-safe, idempotent runs
+- **Query** (`arivu-ask`) — acronym expansion → hybrid (dense + BM25) search → cross-encoder reranking → deduplication → context-grounded generation
+
+## Why Built This Way
+
+- **Plain Python over LangChain/LlamaIndex** — the goal was hands-on understanding of every stage of a RAG pipeline, not framework abstraction. Also avoids dependency bloat on a 16GB machine.
+- **Local-only knowledge base** — source PDFs never leave the machine and are excluded from git; only pipeline code and findings are published.
+- **Every design choice constrained by hardware** — 16GB RAM and no CUDA path shaped chunking strategy, on-disk vector storage, and single-model-at-a-time execution.
+
+## Key Features Implemented
+
+- Hybrid search — dense (BGE-M3) + sparse (BM25) fused via Reciprocal Rank Fusion
+- Cross-encoder reranking for post-retrieval precision
+- Guidewire acronym query expansion (BC, PC, CC, PPC, OOTB, etc.)
+- Content-hash deduplication and score-threshold filtering
+- Deterministic UUID5 point IDs — idempotent, crash-resumable ingestion
+
+## Current Status
+
+Pipeline is feature-complete for MVP. The remaining blocker before Phase 3 (agents) is running the evaluation harness (`eval.py` — Precision@k, Recall@k, MRR) against the real knowledge base to confirm it clears the gate (pass rate ≥80%, MRR ≥0.6).
+
+---
+
+## Deep Dive
+
+- [RAG Pipeline — Architecture & Logic](../ai-privacy/rag-pipeline.md)
+- [RAG Technical Reference — ADRs & Glossary](../ai-privacy/rag-reference.md)

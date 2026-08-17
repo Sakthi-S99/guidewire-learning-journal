@@ -193,7 +193,7 @@ curl http://localhost:6333/healthz         # Qdrant
 ## Phase Log
 
 ### Phase 1 — Infrastructure ✅
-- Ollama + 6 models (Qwen2.5-Coder, Qwen3-Coder, Qwen3 14B, Mistral Nemo, Llama 3.1, BGE-M3)
+- Ollama + 7 models (Qwen2.5-Coder, Qwen3-Coder, Qwen3 14B, Muse Glimmer, Mistral Nemo, Llama 3.1, BGE-M3)
 - Open WebUI (Docker, on-demand)
 - Continue.dev wired to VS Code
 - `.bashrc` optimized for 16GB
